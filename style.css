@@ -17,3 +17,6 @@
 #color_info{
     display: none;
 }
+.error{
+    color: red;
+}

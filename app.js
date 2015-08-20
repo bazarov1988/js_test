@@ -64,65 +64,87 @@ function getColor(){
     return document.getElementById('favoriteColor').value;
 }
 
+function changeColor(){
+    checkColor(document.getElementById('favoriteColor'));
+    validateForm();
+}
+
+function validateForm(){
+    var result = {};
+    var isValid = true;
+
+    if(document.getElementById('firstName').value!=''){
+        result.FirstName = addSpase(document.getElementById('firstName').value);
+        document.getElementById('firstNameError').innerHTML = '';
+    } else {
+        isValid = false;
+        document.getElementById('firstNameResult').innerHTML = '';
+        document.getElementById('firstNameError').innerHTML = 'Name can not be blank';
+    }
+
+    if(document.getElementById('lastName').value!=''){
+        result.LastName = reverseStr(document.getElementById('lastName').value);
+        document.getElementById('lastNameError').innerHTML = '';
+    } else {
+        isValid = false;
+        document.getElementById('lastNameResult').innerHTML = '';
+        document.getElementById('lastNameError').innerHTML = 'Last Name can not be blank';
+    }
+
+    if(document.getElementById('favoriteFood').value!=''){
+        result.Food = getAsciiStr(document.getElementById('favoriteFood').value);
+        document.getElementById('favoriteFoodError').innerHTML = '';
+    } else {
+        isValid = false;
+        document.getElementById('favoriteFoodResult').innerHTML = '';
+        document.getElementById('favoriteFoodError').innerHTML = 'Food can not be blank';
+    }
+    if(document.getElementById('favoriteNumber').value!=''&&!isNaN(parseInt(document.getElementById('favoriteNumber').value))){
+        result.Number = getFactorNumbers(document.getElementById('favoriteNumber').value);
+        document.getElementById('favoriteNumberError').innerHTML = '';
+    } else {
+        isValid = false;
+        document.getElementById('favoriteNumberResult').innerHTML = '';
+        document.getElementById('favoriteNumberError').innerHTML = 'Number can not be blank and must be a number';
+    }
+    if(document.getElementById('favoriteDay').value!=''){
+        result.DayOfWeek = getDayOfWeek(document.getElementById('favoriteDay').value);
+        document.getElementById('favoriteDayError').innerHTML = '';
+    } else {
+        isValid = false;
+        document.getElementById('favoriteDayResult').innerHTML = '';
+        document.getElementById('favoriteDayError').innerHTML = 'Day of Week can not be blank';
+    }
+    if(document.getElementById('favoriteColor').value!=''){
+        result.Color = getColor();
+        document.getElementById('favoriteColorError').innerHTML = '';
+    } else {
+        isValid = false;
+        document.getElementById('favoriteColorError').innerHTML = 'Color can not be blank';
+    }
+    checkColor(document.getElementById('favoriteColor'));
+    if(typeof result.FirstName!='undefined') document.getElementById('firstNameResult').innerHTML = result.FirstName;
+    if(typeof result.LastName!='undefined') document.getElementById('lastNameResult').innerHTML = result.LastName;
+    if(typeof result.Food!='undefined') document.getElementById('favoriteFoodResult').innerHTML = result.Food;
+    if(typeof result.Number!='undefined') document.getElementById('favoriteNumberResult').innerHTML = result.Number;
+    if(typeof result.DayOfWeek!='undefined') document.getElementById('favoriteDayResult').innerHTML = result.DayOfWeek.join(' <br /> ');
+    checkColor(document.getElementById('favoriteColor'));
+    return {isValid:isValid,result:result};
+}
 window.onload=function() {
     document.getElementById('test_form').onsubmit=function(e) {
         e.preventDefault();
-        var result = {};
-        var isValid = true;
-        if(document.getElementById('firstName').value!=''){
-            result.FirstName = addSpase(document.getElementById('firstName').value);
-            document.getElementById('firstNameError').innerHTML = '';
-        } else {
-            isValid = false;
-            document.getElementById('firstNameError').innerHTML = 'Name can not be blank';
-        }
-
-
-        if(document.getElementById('lastName').value!=''){
-            result.LastName = reverseStr(document.getElementById('lastName').value);
-            document.getElementById('lastNameError').innerHTML = '';
-        } else {
-            isValid = false;
-            document.getElementById('lastNameError').innerHTML = 'Last Name can not be blank';
-        }
-
-
-        if(document.getElementById('favoriteFood').value!=''){
-            result.Food = getAsciiStr(document.getElementById('favoriteFood').value);
-            document.getElementById('favoriteFoodError').innerHTML = '';
-        } else {
-            isValid = false;
-            document.getElementById('favoriteFoodError').innerHTML = 'Food can not be blank';
-        }
-
-
-        if(document.getElementById('favoriteNumber').value!=''&&!isNaN(parseInt(document.getElementById('favoriteNumber').value))){
-            result.Number = getFactorNumbers(document.getElementById('favoriteNumber').value);
-            document.getElementById('favoriteNumberError').innerHTML = '';
-        } else {
-            isValid = false;
-            document.getElementById('favoriteNumberError').innerHTML = 'Number can not be blank and must be a number';
-        }
-
-
-        if(document.getElementById('favoriteDay').value!=''){
-            result.DayOfWeek = getDayOfWeek(document.getElementById('favoriteDay').value);
-            document.getElementById('favoriteDayError').innerHTML = '';
-        } else {
-            isValid = false;
-            document.getElementById('favoriteDayError').innerHTML = 'Day of Week can not be blank';
-        }
-
-
-        if(document.getElementById('favoriteColor').value!=''){
-            result.Color = getColor();
-            document.getElementById('favoriteColorError').innerHTML = '';
-        } else {
-            isValid = false;
-            document.getElementById('favoriteColorError').innerHTML = 'Color can not be blank';
-        }
+        var validate = validateForm();
+        var isValid = validate.isValid;
+        var result = validate.result;
         if(isValid){
             console.log(result);
+            document.getElementById('firstNameResult').innerHTML = result.FirstName;
+            document.getElementById('lastNameResult').innerHTML = result.LastName;
+            document.getElementById('favoriteFoodResult').innerHTML = result.Food;
+            document.getElementById('favoriteNumberResult').innerHTML = result.Number;
+            document.getElementById('favoriteDayResult').innerHTML = result.DayOfWeek.join(' <br /> ');
+            checkColor(document.getElementById('favoriteColor'));
         } else {
             alert('Data is Invalid')
         }
