@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="./app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div style="margin-top: 100px"  id="test_form">
+<form>
+    <div>
+    <span>First Name<span><br />
+    <input type="text" id="firstName">
+    <br />
+    <div class="error" id="firstNameError"></div>
+    <br />
+    <span>Last Name<span><br />
+    <input type="text" id="lastName">
+    <br />
+    <div class="error" id="lastNameError"></div>
+    <br />
+        <span>Food<span><br />
+    <input type="text" id="favoriteFood">
+    <br />
+    <div class="error" id="favoriteFoodError"></div>
+    <br />
+       <span>Number<span><br />
+    <input type="text" id="favoriteNumber">
+    <br />
+    <div class="error" id="favoriteNumberError"></div>
+    <br />
+       <span>Day of Week<span><br />
+    <select type="text" id="favoriteDay">
+        <option value="">Select</option>
+        <option value="1">Sunday</option>
+        <option value="2">Monday</option>
+        <option value="3">Tuesday</option>
+        <option value="4">Wednesday</option>
+        <option value="5">Thursday</option>
+        <option value="6">Friday</option>
+        <option value="7">Saturday</option>
+    </select>
+    <br />
+    <div class="error" id="favoriteDayError"></div>
+    <br />
+       <span>Color<span><br />
+    <select type="text" id="favoriteColor" onchange="checkColor(this)">
+        <option value="">Select</option>
+        <option value="#FC051E">Red</option>
+        <option value="#3D9952">Green</option>
+        <option value="#3D5699">Blue</option>
+        <option value="#000000">Black</option>
+        <option value="#9AFC05">Yellow</option>
+        <option value="#BA7404">Orange</option>
+        <option value="#BA04AE">Pink</option>
+        <option value="#590854">Purple</option>
+    </select>
+    <div id="color_info">
+        <span id="color_box"></span>
+        <span id="color_hex"></span>
+    </div>
+    <br />
+    <div class="error" id="favoriteColorError"></div>
+    <br />
+    <input type="submit" value="Send">
+    </div>
+</form>
+</div>
+</body>
+</html>

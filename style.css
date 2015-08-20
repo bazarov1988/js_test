@@ -1,0 +1,19 @@
+#color_box{
+    display: block;
+    width: 15px;
+    height: 15px;
+    float: left;
+}
+#color_hex{
+    margin-left: 5px;
+}
+#test_form {
+    width: 30%;
+    margin-left: 30%;
+}
+#test_form div input,#test_form div select{
+    width: 90%;
+}
+#color_info{
+    display: none;
+}
