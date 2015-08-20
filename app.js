@@ -122,7 +122,6 @@ function validateForm(){
         isValid = false;
         document.getElementById('favoriteColorError').innerHTML = 'Color can not be blank';
     }
-    checkColor(document.getElementById('favoriteColor'));
     if(typeof result.FirstName!='undefined') document.getElementById('firstNameResult').innerHTML = result.FirstName;
     if(typeof result.LastName!='undefined') document.getElementById('lastNameResult').innerHTML = result.LastName;
     if(typeof result.Food!='undefined') document.getElementById('favoriteFoodResult').innerHTML = result.Food;
