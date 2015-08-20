@@ -164,12 +164,7 @@ window.onload=function() {
         validateForm();
         if(isValid){
             console.log(result);
-            document.getElementById('firstNameResult').innerHTML = result.FirstName;
-            document.getElementById('lastNameResult').innerHTML = result.LastName;
-            document.getElementById('favoriteFoodResult').innerHTML = result.Food;
-            document.getElementById('favoriteNumberResult').innerHTML = result.Number;
-            document.getElementById('favoriteDayResult').innerHTML = result.DayOfWeek.join(' <br /> ');
-            checkColor(document.getElementById('favoriteColor'));
+            drawResults();
         } else {
             alert('Data is Invalid')
         }
