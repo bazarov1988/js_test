@@ -31,7 +31,7 @@ function getFactorNumbers(value){
                 return i*-1;
             }
         }
-    } else if(value==0){
+    } else if(value==0||value==1){
         return 1;
     } else {
         for (var i=value;i>=0;i--){
@@ -130,6 +130,7 @@ function validateForm(){
     checkColor(document.getElementById('favoriteColor'));
     return {isValid:isValid,result:result};
 }
+
 window.onload=function() {
     document.getElementById('test_form').onsubmit=function(e) {
         e.preventDefault();
@@ -147,6 +148,5 @@ window.onload=function() {
         } else {
             alert('Data is Invalid')
         }
-
     }
 }
