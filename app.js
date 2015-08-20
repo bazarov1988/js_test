@@ -1,3 +1,5 @@
+var isValid = true;
+var result = {};
 function reverseStr(str) {
     return str.split("").reverse().join("");
 }
@@ -66,77 +68,100 @@ function getColor(){
 
 function changeColor(){
     checkColor(document.getElementById('favoriteColor'));
-    validateForm();
+    validateColor();
 }
 
-function validateForm(){
-    var result = {};
-    var isValid = true;
-
+function validateFN(){
     if(document.getElementById('firstName').value!=''){
-        result.FirstName = addSpase(document.getElementById('firstName').value);
         document.getElementById('firstNameError').innerHTML = '';
+        result.FirstName = addSpase(document.getElementById('firstName').value);
+        drawResults();
     } else {
-        isValid = false;
         document.getElementById('firstNameResult').innerHTML = '';
         document.getElementById('firstNameError').innerHTML = 'Name can not be blank';
+        isValid = false;
     }
+}
 
+function validateLN(){
     if(document.getElementById('lastName').value!=''){
-        result.LastName = reverseStr(document.getElementById('lastName').value);
         document.getElementById('lastNameError').innerHTML = '';
+        result.LastName = reverseStr(document.getElementById('lastName').value);
+        drawResults();
     } else {
         isValid = false;
         document.getElementById('lastNameResult').innerHTML = '';
         document.getElementById('lastNameError').innerHTML = 'Last Name can not be blank';
     }
 
+}
+function validateFood(){
     if(document.getElementById('favoriteFood').value!=''){
-        result.Food = getAsciiStr(document.getElementById('favoriteFood').value);
         document.getElementById('favoriteFoodError').innerHTML = '';
+        result.Food = getAsciiStr(document.getElementById('favoriteFood').value);
+        drawResults();
     } else {
-        isValid = false;
         document.getElementById('favoriteFoodResult').innerHTML = '';
         document.getElementById('favoriteFoodError').innerHTML = 'Food can not be blank';
-    }
-    if(document.getElementById('favoriteNumber').value!=''&&!isNaN(parseInt(document.getElementById('favoriteNumber').value))){
-        result.Number = getFactorNumbers(document.getElementById('favoriteNumber').value);
-        document.getElementById('favoriteNumberError').innerHTML = '';
-    } else {
         isValid = false;
+    }
+}
+function validateNumber(){
+    if(document.getElementById('favoriteNumber').value!=''&&!isNaN(parseInt(document.getElementById('favoriteNumber').value))){
+        document.getElementById('favoriteNumberError').innerHTML = '';
+        result.Number = getFactorNumbers(document.getElementById('favoriteNumber').value);
+        drawResults();
+    } else {
         document.getElementById('favoriteNumberResult').innerHTML = '';
         document.getElementById('favoriteNumberError').innerHTML = 'Number can not be blank and must be a number';
+        return false;
     }
+}
+function validateDay(){
     if(document.getElementById('favoriteDay').value!=''){
-        result.DayOfWeek = getDayOfWeek(document.getElementById('favoriteDay').value);
         document.getElementById('favoriteDayError').innerHTML = '';
+        result.DayOfWeek = getDayOfWeek(document.getElementById('favoriteDay').value);
+        drawResults();
     } else {
-        isValid = false;
         document.getElementById('favoriteDayResult').innerHTML = '';
         document.getElementById('favoriteDayError').innerHTML = 'Day of Week can not be blank';
-    }
-    if(document.getElementById('favoriteColor').value!=''){
-        result.Color = getColor();
-        document.getElementById('favoriteColorError').innerHTML = '';
-    } else {
         isValid = false;
-        document.getElementById('favoriteColorError').innerHTML = 'Color can not be blank';
     }
+}
+
+function validateColor(){
+    if(document.getElementById('favoriteColor').value!=''){
+        document.getElementById('favoriteColorError').innerHTML = '';
+        result.Color = getColor();
+        drawResults();
+    } else {
+        document.getElementById('favoriteColorError').innerHTML = 'Color can not be blank';
+        isValid = false;
+    }
+}
+
+function drawResults(){
     if(typeof result.FirstName!='undefined') document.getElementById('firstNameResult').innerHTML = result.FirstName;
     if(typeof result.LastName!='undefined') document.getElementById('lastNameResult').innerHTML = result.LastName;
     if(typeof result.Food!='undefined') document.getElementById('favoriteFoodResult').innerHTML = result.Food;
     if(typeof result.Number!='undefined') document.getElementById('favoriteNumberResult').innerHTML = result.Number;
     if(typeof result.DayOfWeek!='undefined') document.getElementById('favoriteDayResult').innerHTML = result.DayOfWeek.join(' <br /> ');
     checkColor(document.getElementById('favoriteColor'));
-    return {isValid:isValid,result:result};
+    return true;
+}
+function validateForm(){
+    validateFN();
+    validateLN();
+    validateColor();
+    validateDay();
+    validateFood();
+    validateNumber();
 }
 
 window.onload=function() {
     document.getElementById('test_form').onsubmit=function(e) {
         e.preventDefault();
-        var validate = validateForm();
-        var isValid = validate.isValid;
-        var result = validate.result;
+        validateForm();
         if(isValid){
             console.log(result);
             document.getElementById('firstNameResult').innerHTML = result.FirstName;

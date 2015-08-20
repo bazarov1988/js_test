@@ -9,31 +9,31 @@
 <form>
     <div>
     <span>First Name<span><br />
-    <input type="text" id="firstName" onchange="validateForm()">
+    <input type="text" id="firstName"  onblur="validateFN()">
     <br />
     <div class="error" id="firstNameError"></div>
     <div id="firstNameResult"></div>
     <br />
     <span>Last Name<span><br />
-    <input type="text" id="lastName" onchange="validateForm()">
+    <input type="text" id="lastName"  onblur="validateLN()">
     <br />
     <div class="error" id="lastNameError"></div>
     <div id="lastNameResult"></div>
     <br />
         <span>Food<span><br />
-    <input type="text" id="favoriteFood" onchange="validateForm()">
+    <input type="text" id="favoriteFood"  onblur="validateFood()">
     <br />
     <div class="error" id="favoriteFoodError"></div>
     <div id="favoriteFoodResult"></div>
     <br />
        <span>Number<span><br />
-    <input type="text" id="favoriteNumber"  onchange="validateForm()">
+    <input type="text" id="favoriteNumber"   onblur="validateNumber()">
     <br />
     <div class="error" id="favoriteNumberError"></div>
     <div id="favoriteNumberResult"></div>
     <br />
        <span>Day of Week<span><br />
-    <select type="text" id="favoriteDay"  onchange="validateForm()">
+    <select type="text" id="favoriteDay"  onchange="validateDay()">
         <option value="">Select</option>
         <option value="1">Sunday</option>
         <option value="2">Monday</option>
